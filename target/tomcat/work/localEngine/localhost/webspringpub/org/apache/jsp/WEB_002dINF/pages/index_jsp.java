@@ -55,7 +55,7 @@ public final class index_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("<h1>Maven + Spring MVC Web Project Example</h1>\r\n");
       out.write("<h1></h1>\r\n");
       out.write("<h1 style=\"color:blue;\">I'm saying HELLO to Vanya from my first web project!</h1>\r\n");
-      out.write("<img src=\"kb8ca3.jpg\" alt=\"Smiley face\" height=\"42\" width=\"42\">\r\n");
+      out.write("<img src=\"images/kb8ca3.jpg\" alt=\"Smiley face\" height=\"42\" width=\"42\">\r\n");
       out.write("<h2>Message : ");
       out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.proprietaryEvaluate("${message}", java.lang.String.class, (PageContext)_jspx_page_context, null, false));
       out.write("</h2>\r\n");
