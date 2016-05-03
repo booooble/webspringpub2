@@ -22,9 +22,9 @@
 		</property>
 	</bean>
 
-	<mvc:resources mapping="/images/**" location="/images/"
+	<mvc:resources mapping="/resources/**" location="/resources/"
 				   cache-period="31556926"/>
-
+				   
 	<mvc:annotation-driven />
 
 </beans>
