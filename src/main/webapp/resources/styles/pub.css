@@ -1,5 +1,6 @@
 body {
 	margin:0px;
+	background-image: url(../images/bg1.jpg);
 }
 
 #common {
@@ -11,10 +12,49 @@ body {
 }
 
 #header {
-	background:darkred;
+	position:relative;
 	width:100%;
 	height:60px;
-	position:relative;
+	font-falmily:"Impact", Charcoal, sans-serif;
+	font-size: 2.5em;
+	color:#FFD700;
+}
+
+#visitInd {
+	text-align:right;
+	position:absolute;
+	width:140px;
+	height:60px;
+}
+
+#labels {
+	width: calc(100% - 280px);
+	height:60px;
+	position:absolute;
+	left:140px;
+}
+
+#visitIndLabel {
+	text-align:left;
+	position:absolute;
+	width:50%;
+	height:60px;
+}
+
+#beerIndLabel {
+	text-align:right;
+	position:absolute;
+	width:50%;
+	height:60px;
+	left:50%;		
+}
+
+#beerInd {
+	text-align:left;
+	position:absolute;
+	width:140px;
+	height:60px;
+	right: 0px;	
 }
 
 #content {
@@ -24,18 +64,17 @@ body {
 }
 
 #left {
-	width:20%;
+	width:200px;
 	height:300px;
-	position:absolute;
-	
+	position:absolute;	
 }
 
 #center {
-	width:60%;
+	width:calc(100% - 400px);
 	height:300px;
 	position:absolute;
 	text-align:center;
-	left:20%;
+	left:200px;
 	top:0px;
 	/*background-image: url(../images/beer.jpg);*/
 	opacity: 0.5;
@@ -47,7 +86,7 @@ body {
 	width:200px;
 	height:300px;
 	position:absolute;
-	left:80%;
+	right:0px;
 	top:0px;
 }
 
@@ -94,8 +133,8 @@ body {
 }
 
 #historyTextArea{
-	width: 100%; /* Ширина поля в процентах */
-    height: 100%; /* Высота поля в пикселах */
+	width: 95%;
+    height: 95%;
     resize: none;
 	padding: 0px;
 	font-family: Tahoma, sans-serif;
@@ -104,7 +143,6 @@ body {
     text-shadow: 1px 1px 2px black, 0 0 1em red;
     border: none;
     margin: 0 auto;
-    
 }
 
 #container {
@@ -120,11 +158,12 @@ body {
 	width:200px;
 	height:200px;
 	border:0px;
-  	margin-top: 18%;	
+  	margin-top: 18%;
+  	margin-right: 0px;
 }
 
 @font-face {
-    font-family: 'BebasNeueRegular';
+    font-family: "Impact", Charcoal, sans-serif;;
     src: url('BebasNeue-webfont.eot');
     src: url('BebasNeue-webfont.eot?#iefix') format('embedded-opentype'),
          url('BebasNeue-webfont.woff') format('woff'),

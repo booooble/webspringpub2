@@ -5,24 +5,22 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 	<title>Web Spring Pub</title>
-<link href="${pageContext.request.contextPath}/resources/styles/pub.css" rel="stylesheet">
-<link href="${pageContext.request.contextPath}/resources/styles/glyphterButtons.css" rel="stylesheet">
-<link href="//netdna.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.css" rel="stylesheet">
-<link rel="stylesheet" href="resources/css/circle.css">
-<link rel="stylesheet" href="resources/styles/buttons.css">
-<script src="//code.jquery.com/jquery-2.1.4.min.js"></script>
-<script src="resources/js/ProgressBar.js"></script>
-<script src="resources/js/loadgo.js"></script>
-<!-- <script src="resources/js/jquery.percentageloader-0.2.js"></script>
- --><script src="resources/js/jquery.percentageloader-0.1.min.js"></script>
-
-
-
+	<link href="${pageContext.request.contextPath}/resources/styles/pub.css" rel="stylesheet">
+	<link rel="stylesheet" href="resources/styles/buttons.css">
+	<script src="//code.jquery.com/jquery-2.1.4.min.js"></script>
+	<script src="resources/js/ProgressBar.js"></script>
+	<script src="resources/js/jquery.percentageloader-0.1.min.js"></script>
 </head>
-
-<body style="background-image:url(resources/images/bg1.jpg)">
+<body>
 	<div id="common">
-		<div id="header">web site's header</div>
+		<div id="header">
+			<div id="visitInd">24/250</div>
+			<div id="labels">
+				<div id="visitIndLabel">: Total Visitors</div>
+				<div id="beerIndLabel">Drunk beer: </div>
+			</div>			
+			<div id="beerInd">425.25</div>
+		</div>
 		<div id="content">
 			<div id="left">
 				<div id="container"></div>
@@ -52,7 +50,7 @@
 				<div id="rbar">
 				<script>
 					$("#rbar").percentageLoader({
-    					width : 200, height : 200, progress : 0.5, value : '512kb'});
+    					width : 200, height : 200, progress : 0.5, value : '425L'});
    				</script>
    				</div>
 			</div>
