@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+     http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+     http://www.springframework.org/schema/context
+     http://www.springframework.org/schema/context/spring-context-4.0.xsd">
+
+    <context:annotation-config/>
+
+    <bean id="pub" class="springinthepub.Pub">
+        <constructor-arg value="BlueLagoone"/>
+        <constructor-arg type="double" value="500.0"/>
+        <property name="visitors">
+            <list>
+                <ref bean="beerman1"/>
+                <ref bean="beerman2"/>
+                <ref bean="beerman3"/>
+            </list>
+        </property>
+    </bean>
+
+    <bean id="beerman1" class="springinthepub.Beerman">
+        <constructor-arg value="Tom"></constructor-arg>
+        <constructor-arg type="int" value="50"></constructor-arg>
+        <constructor-arg type="double" value="500.0"></constructor-arg>
+    </bean>
+
+    <bean id="beerman2" class="springinthepub.Beerman">
+        <constructor-arg value="Ben"></constructor-arg>
+        <constructor-arg type="int" value="15"></constructor-arg>
+        <constructor-arg type="double" value="25.5"></constructor-arg>
+    </bean>
+
+    <bean id="beerman3" class="springinthepub.Beerman">
+        <constructor-arg value="Ted"></constructor-arg>
+        <constructor-arg type="int" value="45"></constructor-arg>
+        <constructor-arg type="double" value="35.5"></constructor-arg>
+    </bean>
+</beans>
