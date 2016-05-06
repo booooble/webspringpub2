@@ -23,7 +23,6 @@ public class BaseController {
 
 		// Spring uses InternalResourceViewResolver and return back index.jsp
 		return VIEW_INDEX;
-
 	}
 
 	@RequestMapping(value = "/{name}", method = RequestMethod.GET)
@@ -33,7 +32,6 @@ public class BaseController {
 		model.addAttribute("counter", ++counter);
 		logger.debug("[welcomeName] counter : {}", counter);
 		return VIEW_INDEX;
-
 	}
 	
 	@RequestMapping(value = "/index", method = RequestMethod.GET)
@@ -43,7 +41,6 @@ public class BaseController {
 	   
 	@RequestMapping(value = "/pub", method = RequestMethod.GET)
 	public String pub() {
-		System.out.println("Yo");
 	   return "pub";
 	}
 }

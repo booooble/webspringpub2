@@ -16,8 +16,8 @@
 		<div id="header">
 			<div id="visitInd">24/250</div>
 			<div id="labels">
-				<div id="visitIndLabel">: Total Visitors</div>
-				<div id="beerIndLabel">Drunk beer: </div>
+				<div id="visitIndLabel">&nbsp:Total Visitors</div>
+				<div id="beerIndLabel">Drunk beer:&nbsp</div>
 			</div>			
 			<div id="beerInd">425.25</div>
 		</div>
@@ -38,11 +38,9 @@
     						circle.path.setAttribute('stroke', state.color);
   						}
 					});
-
 					bar.animate(0.5);  // Number from 0.0 to 1.0
 				</script>
-			</div>
-		
+			</div>		
 			<div id="center">
 			<textarea id="historyTextArea"></textarea>
 			</div>
