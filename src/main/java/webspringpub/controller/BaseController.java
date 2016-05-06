@@ -35,5 +35,15 @@ public class BaseController {
 		return VIEW_INDEX;
 
 	}
-
+	
+	@RequestMapping(value = "/index", method = RequestMethod.GET)
+	public String index() {
+	   return "index";
+	}
+	   
+	@RequestMapping(value = "/pubbla", method = RequestMethod.GET)
+	public String pub() {
+		System.out.println("Yo");
+	   return "redirect:pub";
+	}
 }
