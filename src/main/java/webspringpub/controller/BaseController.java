@@ -41,9 +41,9 @@ public class BaseController {
 	   return "index";
 	}
 	   
-	@RequestMapping(value = "/pubbla", method = RequestMethod.GET)
+	@RequestMapping(value = "/pub", method = RequestMethod.GET)
 	public String pub() {
 		System.out.println("Yo");
-	   return "redirect:pub";
+	   return "pub";
 	}
 }
