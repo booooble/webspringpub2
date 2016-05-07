@@ -51,6 +51,10 @@ public class Pub {
         visitorsQueue.add(RandomGenerator.personRandomGenerator());
     }
 
+    public int getQueueSize() {
+        return visitorsQueue.size();
+    }
+
     public void userFilter() {
         if (visitorsQueue.isEmpty()) {
             System.out.println("The queue is empty. Waiting for visitors");
