@@ -1,9 +1,9 @@
 package springinthepub;
 
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Scanner;
 
 public class RandomGenerator {
@@ -46,13 +46,13 @@ public class RandomGenerator {
         return list;
     }
 
-    public static ArrayList<Integer> generatelitersList() throws IOException {
-        ArrayList<Integer> list = new ArrayList<>();
+    public static ArrayList<Double> generateLitersList() throws IOException {
+        ArrayList<Double> list = new ArrayList<>();
         ClassLoader classLoader = RandomGenerator.class.getClassLoader();
         File file = new File(classLoader.getResource(litersFilePath).getFile());
         try (Scanner scanner = new Scanner(file)) {
             while (scanner.hasNextLine()) {
-                int line = Integer.parseInt(scanner.nextLine());
+                double line = Double.parseDouble(scanner.nextLine());
                 list.add(line);
             }
             scanner.close();
@@ -62,12 +62,35 @@ public class RandomGenerator {
         return list;
     }
 
+    public static String randomName(ArrayList<String> list) {
+        Collections.shuffle(list);
+        return list.get(0);
+    }
 
-    public RandomGenerator() throws FileNotFoundException {
+    public static int randomAge(ArrayList<Integer> list) {
+        Collections.shuffle(list);
+        return list.get(0);
+    }
+
+    public static double randomLiters(ArrayList<Double> list) {
+        Collections.shuffle(list);
+        return list.get(0);
+    }
+
+    public static Beerman personRandomGenerator() throws IOException {
+        return new Beerman(randomName(generateNameList()), randomAge(generateAgeList()), randomLiters(generateLitersList()));
     }
 
     public static void main(String[] arg) throws IOException {
-        System.out.println(generatelitersList());
+//        System.out.println(personRandomGenerator());
+//        System.out.println(personRandomGenerator());
+//        System.out.println(personRandomGenerator());
+//        System.out.println(personRandomGenerator());
+//        System.out.println(personRandomGenerator());
+//        System.out.println(personRandomGenerator());
+//        System.out.println(personRandomGenerator());
+
+
     }
 
 }

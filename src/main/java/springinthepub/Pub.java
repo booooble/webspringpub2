@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
+import java.io.IOException;
 import java.util.*;
 
 public class Pub {
@@ -46,8 +47,8 @@ public class Pub {
         return visitors;
     }
 
-    public void addVisitorToTheQueue(Beerman visitor) {
-        visitorsQueue.add(visitor);
+    public void addVisitorToTheQueue() throws IOException {
+        visitorsQueue.add(RandomGenerator.personRandomGenerator());
     }
 
     public void userFilter() {
