@@ -13,15 +13,17 @@
 </head>
 <body>
 	<div id="common">
-		<div id="header">
-			<div id="visitInd">24/250</div>
-			<div id="labels">
-				<div id="visitIndLabel">&nbsp:Total Visitors</div>
-				<div id="beerIndLabel">Drunk beer:&nbsp</div>
-			</div>			
-			<div id="beerInd">425.25</div>
+		<div id="labels">
+			<div id="visitIndLabel">Visitors:</div>
+			<div id="queueIndLabel">In Queue:</div>
+			<div id="beerIndLabel">Drunk beer:</div>
 		</div>
-		<div id="content">
+		<div id="infoBar">
+			<div id="visitorsInfo">24/250</div>
+			<div id="queueInfo">20</div>
+			<div id="beerInfo">425.25</div>
+		</div>
+			<div id="content">
 			<div id="left">
 				<div id="container"></div>
 				<script>

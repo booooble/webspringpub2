@@ -11,50 +11,68 @@ body {
 	transform: translateY(10%);
 }
 
-#header {
-	position:relative;
-	width:100%;
+#labels {
+	width: 100%;
 	height:60px;
 	font-falmily:"Impact", Charcoal, sans-serif;
 	font-size: 2.5em;
-	color:#FFD700;
-}
-
-#visitInd {
-	text-align:right;
-	position:absolute;
-	width:140px;
-	height:60px;
-}
-
-#labels {
-	width: calc(100% - 280px);
-	height:60px;
-	position:absolute;
-	left:140px;
+	color:#FF6600;
+	position:relative;
+	text-align:center;
 }
 
 #visitIndLabel {
-	text-align:left;
 	position:absolute;
-	width:50%;
+	width:200px;
 	height:60px;
+}
+
+#queueIndLabel {
+	position:absolute;
+	width:calc(100% - 400px);
+	height:60px;
+	left:200px;
 }
 
 #beerIndLabel {
 	text-align:right;
 	position:absolute;
-	width:50%;
+	width:200px;
 	height:60px;
-	left:50%;
+	right:0px;
 }
 
-#beerInd {
-	text-align:left;
+#infoBar {
+	width: 100%;
+	height:80px;
+	position:relative;
+	font-falmily:"Impact", Charcoal, sans-serif;
+	text-decoration: overline;
+	text-shadow: 5px 3px 8px red;
+	font-size: 4em;
+	color:#FFD700;
+	text-align:center
+}
+
+#visitorsInfo {
 	position:absolute;
-	width:140px;
+	width:200px;
 	height:60px;
-	right: 0px;	
+}
+
+#queueInfo {
+	position:absolute;
+	width:calc(100% - 400px);
+	height:60px;
+	left:200px;
+}
+
+#beerInfo {
+	text-align:right;
+	position:absolute;
+	width:200px;
+	height:60px;
+	right:0px;
 }
 
 #content {

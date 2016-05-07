@@ -51,7 +51,7 @@ public class Pub {
         visitorsQueue.add(RandomGenerator.personRandomGenerator());
     }
 
-    public int getQueueSize() {
+    public int getVisitorsQueueSize() {
         return visitorsQueue.size();
     }
 
