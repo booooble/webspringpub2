@@ -10,9 +10,6 @@ public class RandomGenerator {
     static String nameFilePath = "names.txt";
     static String ageFilePath = "ages.txt";
     static String litersFilePath = "litersToDrink.txt";
-    static ArrayList<String> names = new ArrayList<>();
-    static ArrayList<Integer> ages = new ArrayList<>();
-    static ArrayList<Integer> liters = new ArrayList<>();
 
     public static ArrayList<String> generateNameList() throws IOException {
         ArrayList<String> list = new ArrayList<>();
