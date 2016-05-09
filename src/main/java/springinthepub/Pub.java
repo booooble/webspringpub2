@@ -8,16 +8,25 @@ import java.io.IOException;
 import java.util.*;
 
 public class Pub {
-    private static final int maxCapacity = 50;
+    private int maxCapacity = 150;
     private String pubName;
     private int currCapacity = 0;
     private double beerLiterLimit;
-    private final double maxBeerLimit;
+    private double maxBeerLimit;
     private Queue<Beerman> visitorsQueue = new PriorityQueue();
     private List<Beerman> visitors = new ArrayList<>();
+    private int visitorsQueueSize;
+    private double drunkBeer;
+    private String stringBeerLiterLimit;
 
-    public static int getMaxCapacity() {
+
+    
+    public int getMaxCapacity() {
         return maxCapacity;
+    }
+    
+    public void setMaxCapacity(int max) {
+    	this.maxCapacity = max;
     }
 
     public double getMaxBeerLimit() {
@@ -41,14 +50,20 @@ public class Pub {
         this.pubName = pubName;
         this.maxBeerLimit = maxBeerLimit;
         this.beerLiterLimit = maxBeerLimit;
+        System.out.println(this.pubName);
+    }
+    public Pub() {
+    
     }
 
     public List<Beerman> getVisitors() {
         return visitors;
     }
 
-    public void addVisitorToTheQueue() throws IOException {
+    public void addRandomVisitorToTheQueue() throws IOException {
         visitorsQueue.add(RandomGenerator.personRandomGenerator());
+        System.out.println(visitorsQueue);
+        System.out.println(visitorsQueue.size());
     }
 
     public int getVisitorsQueueSize() {
@@ -149,4 +164,24 @@ public class Pub {
         Pub blueLagoon = (Pub) ac.getBean("pub");
         System.out.println(blueLagoon);
     }
+
+	public void setVisitorsQueueSize(int visitorsQueueSize) {
+		this.visitorsQueueSize = visitorsQueueSize;
+	}
+
+	public double getDrunkBeer() {
+		return drunkBeer;
+	}
+
+	public void setDrunkBeer(double drunkBeer) {
+		this.drunkBeer = drunkBeer;
+	}
+
+	public String getStringBeerLiterLimit() {
+		return beerLiterLimit + "L";
+	}
+
+	public void setStringBeerLiterLimit(Double stringBeerLiterLimit) {
+		this.stringBeerLiterLimit = stringBeerLiterLimit.toString() + "L";
+	}
 }

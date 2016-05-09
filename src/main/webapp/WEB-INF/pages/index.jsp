@@ -19,9 +19,9 @@
 <body>
 	<div id="common">
 		<div id="start">
-			<!-- <form:form method="GET" action="/pub" id="formid"> -->
-				<span class="button-wrap"><a href="pub" class="button button-circle button-primary"> <!-- onclick="document.getElementById('formid').submit()" -->START</a></span>
-			<!-- </form:form> -->
+			<form:form modelAttribute="pub">
+				<span class="button-wrap"><a href="pub" class="button button-circle button-primary" type="submit" value="Submit">START</a></span>
+			</form:form>
 		</div>
 	</div>
 </body>

@@ -17,6 +17,15 @@
 		<url-pattern>/</url-pattern>
 	</servlet-mapping>
 
+<servlet>
+    <servlet-name>pubServlet</servlet-name>
+    <servlet-class>servlet.PubServlet</servlet-class>
+</servlet>
+<servlet-mapping>
+    <servlet-name>pubServlet</servlet-name>
+    <url-pattern>/pubservlet</url-pattern>  <!-- This is the URL of the servlet. -->
+</servlet-mapping>
+
 	<context-param>
 		<param-name>contextConfigLocation</param-name>
 		<param-value>/WEB-INF/mvc-dispatcher-servlet.xml</param-value>

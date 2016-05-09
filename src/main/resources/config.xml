@@ -12,13 +12,13 @@
     <bean id="pub" class="springinthepub.Pub">
         <constructor-arg value="BlueLagoone"/>
         <constructor-arg type="double" value="500.0"/>
-        <property name="visitors">
-            <list>
-                <ref bean="beerman1"/>
-                <ref bean="beerman2"/>
-                <ref bean="beerman3"/>
-            </list>
-        </property>
+        <!--<property name="visitors">-->
+            <!--<list>-->
+                <!--<ref bean="beerman1"/>-->
+                <!--<ref bean="beerman2"/>-->
+                <!--<ref bean="beerman3"/>-->
+            <!--</list>-->
+        <!--</property>-->
     </bean>
 
     <bean id="beerman1" class="springinthepub.Beerman">

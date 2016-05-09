@@ -19,9 +19,9 @@
 			<div id="beerIndLabel">Drunk beer:</div>
 		</div>
 		<div id="infoBar">
-			<div id="visitorsInfo">24/250</div>
-			<div id="queueInfo">20</div>
-			<div id="beerInfo">425.25</div>
+			<div id="visitorsInfo">${pub.currCapacity}/${pub.maxCapacity}</div>
+			<div id="queueInfo">${pub.visitorsQueueSize}</div>
+			<div id="beerInfo">${pub.drunkBeer}</div>
 		</div>
 			<div id="content">
 			<div id="left">
@@ -56,10 +56,10 @@
 			</div>
 		</div>
 		<div id="bottom">
-		<FORM NAME="form1" ACTION="formAction.jsp" METHOD="POST">
-		<div id="add"><a href="#" class="button button-3d-primary button-rounded">Add Visitor</a></div>
-		<div id="save"><a href="#" class="button button-3d-highlight button-circle">Save Log</a></div>
-		<div id="remove"><a href="#" class="button button-3d-caution button-rounded">Remove Visitor</a></div>		</FORM>
+			<FORM NAME="form1" ACTION="${pageContext.request.contextPath}/pubservlet" METHOD="POST">
+			<div id="add"><input type="submit" name="add" value="Add Visitor" class="button button-3d-primary button-rounded"></div>
+			<div id="save"><a href="#" class="button button-3d-highlight button-circle">Save Log</a></div>
+			<div id="remove"><a href="#" class="button button-3d-caution button-rounded">Remove Visitor</a></div>		</FORM>
 		</div>
 	</div>
 
