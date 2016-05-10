@@ -1,6 +1,8 @@
 package servlet;
 
 import java.io.IOException;
+
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -14,10 +16,12 @@ public class PubServlet  extends HttpServlet {
 	
 	@Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        Pub pub = new Pub();
 
+		ServletContext sc = request.getServletContext();
+	     sc.getAttribute("pub");
+	     
         if (request.getParameter("add") != null) {
-            pub.addRandomVisitorToTheQueue();
+        	((Pub) sc.getAttribute("pub")).addRandomVisitorToTheQueue();
 /*        } else if (request.getParameter("button2") != null) {
             pub.method2();
         } else if (request.getParameter("button3") != null) {

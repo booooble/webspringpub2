@@ -58,7 +58,7 @@
 		<div id="bottom">
 			<FORM NAME="form1" ACTION="${pageContext.request.contextPath}/pubservlet" METHOD="POST">
 			<div id="add"><input type="submit" name="add" value="Add Visitor" class="button button-3d-primary button-rounded"></div>
-			<div id="save"><a href="#" class="button button-3d-highlight button-circle">Save Log</a></div>
+			<div id="save"><a href="/puby/add" class="button button-3d-highlight button-circle">Save Log</a></div>
 			<div id="remove"><a href="#" class="button button-3d-caution button-rounded">Remove Visitor</a></div>		</FORM>
 		</div>
 	</div>

@@ -20,7 +20,7 @@
 	<div id="common">
 		<div id="start">
 			<form:form modelAttribute="pub">
-				<span class="button-wrap"><a href="pub" class="button button-circle button-primary" type="submit" value="Submit">START</a></span>
+				<span class="button-wrap"><a href="puby" class="button button-circle button-primary" type="submit" value="Submit">START</a></span>
 			</form:form>
 		</div>
 	</div>

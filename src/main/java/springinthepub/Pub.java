@@ -11,12 +11,12 @@ public class Pub {
     private int maxCapacity = 150;
     private String pubName;
     private int currCapacity = 0;
-    private double beerLiterLimit;
+    private double beerLiterLimit = 0;
     private double maxBeerLimit;
     private Queue<Beerman> visitorsQueue = new PriorityQueue();
     private List<Beerman> visitors = new ArrayList<>();
-    private int visitorsQueueSize;
-    private double drunkBeer;
+    private int visitorsQueueSize = 0;
+    private double drunkBeer = 0;
     private String stringBeerLiterLimit;
 
 
