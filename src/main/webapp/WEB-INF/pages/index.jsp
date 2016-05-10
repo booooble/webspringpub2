@@ -9,8 +9,8 @@
 <link rel="stylesheet" href="resources/styles/buttons.css">
 <style type="text/css">
 .button-circle {
-    width: 150px;
-    line-height: 100px;
+    width: 200px;
+    line-height: 15px;
     height: 100px;
     font-size: 36px;
 }
@@ -19,9 +19,12 @@
 <body>
 	<div id="common">
 		<div id="start">
-			<form:form modelAttribute="pub">
+			<form action="puby" method="post">
+  				<span class="button-wrap"><button type="submit" name="your_name" value="START" class="btn-link button button-circle button-primary">START</button></span>
+			</form>
+<!-- 			<form:form modelAttribute="pub">
 				<span class="button-wrap"><a href="puby" class="button button-circle button-primary" type="submit" value="Submit">START</a></span>
-			</form:form>
+			</form:form> -->
 		</div>
 	</div>
 </body>

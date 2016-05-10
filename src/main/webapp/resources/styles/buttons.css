@@ -119,7 +119,7 @@
 
 /* line 65, ../scss/partials/_buttons.scss */
 input.button, button.button {
-  height: 34px;
+  /*height: 34px;*/
   cursor: pointer;
   -webkit-appearance: none; }
 
