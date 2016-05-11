@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<%@page session="true"%>
+<%-- <%@page session="true"%> --%>
+<%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <html>
 
 <head>
@@ -60,7 +61,7 @@
 			<div id="add"><input type="submit" name="add" value="Add Visitor" class="button button-3d-primary button-rounded"></div>
 			
 			<div id="save">
-				<form action="puby/add" method="POST">
+				<form action="add" method="POST">
   					<button type="submit" name="save" value="Save Log" class="btn-link button button-3d-highlight button-circle">Save Log</button>
 				</form>
 			</div>

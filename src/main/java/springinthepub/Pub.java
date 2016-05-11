@@ -13,7 +13,7 @@ public class Pub {
     private int currCapacity = 0;
     private double beerLiterLimit = 0;
     private double maxBeerLimit;
-    private Queue<Beerman> visitorsQueue = new PriorityQueue();
+    private Queue<Beerman> visitorsQueue = new LinkedList<Beerman>();
     private List<Beerman> visitors = new ArrayList<>();
     private int visitorsQueueSize = 0;
     private double drunkBeer = 0;
@@ -62,6 +62,9 @@ public class Pub {
 
     public void addRandomVisitorToTheQueue() throws IOException {
         visitorsQueue.add(RandomGenerator.personRandomGenerator());
+        visitorsQueueSize++;
+
+        
         System.out.println(visitorsQueue);
         System.out.println(visitorsQueue.size());
     }
@@ -75,7 +78,7 @@ public class Pub {
             System.out.println("The queue is empty. Waiting for visitors");
             //interrupt the Thread to wait;
         } else {
-            Iterator it = visitorsQueue.iterator();
+            Iterator<Beerman> it = visitorsQueue.iterator();
             List<Beerman> temp = new ArrayList<>();
             while (it.hasNext()) {
                 Beerman visitor = (Beerman) it.next();
@@ -118,17 +121,17 @@ public class Pub {
         }
     }
 
-    @Override
-    public String toString() {
-        return "Pub{" +
-                "pubName='" + pubName + '\'' +
-                ", capacity=" + currCapacity + "/" + maxCapacity +
-                ", beerLiterLimit=" + beerLiterLimit +
-                ", \n\tvisitors=" + visitors +
-                '}';
-    }
 
-    public String getPubName() {
+
+    @Override
+	public String toString() {
+		return "Pub [maxCapacity=" + maxCapacity + ", pubName=" + pubName + ", currCapacity=" + currCapacity
+				+ ", beerLiterLimit=" + beerLiterLimit + ", maxBeerLimit=" + maxBeerLimit + ", visitorsQueue="
+				+ visitorsQueue + ", visitors=" + visitors + ", visitorsQueueSize=" + visitorsQueueSize + ", drunkBeer="
+				+ drunkBeer + ", stringBeerLiterLimit=" + stringBeerLiterLimit + "]";
+	}
+
+	public String getPubName() {
         return pubName;
     }
 
