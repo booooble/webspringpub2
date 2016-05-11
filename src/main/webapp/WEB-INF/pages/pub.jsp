@@ -60,7 +60,7 @@
 			<div id="add"><input type="submit" name="add" value="Add Visitor" class="button button-3d-primary button-rounded"></div>
 			
 			<div id="save">
-				<form action="puby/add" method="get">
+				<form action="puby/add" method="POST">
   					<button type="submit" name="save" value="Save Log" class="btn-link button button-3d-highlight button-circle">Save Log</button>
 				</form>
 			</div>

@@ -14,9 +14,6 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import springinthepub.Pub;
 
 @Controller
-/*@SessionAttributes("pub")
- * 
-*/
 @SessionAttributes("pub")
 public class BaseController {
 	
@@ -36,13 +33,16 @@ public class BaseController {
 	   return "index";
 	}
 	
-	@RequestMapping(value="/puby/add", method=RequestMethod.GET)
+	@RequestMapping(value="/puby/add", method=RequestMethod.POST)
 	public String addVisitor(@ModelAttribute("pub") Pub pub, final RedirectAttributes model) throws IOException {
-/*		System.out.println(pub);
+		System.out.println("------" + pub);
 		System.out.println(model.getFlashAttributes());
-		Pub p = (Pub) model.getFlashAttributes().get("pub");*/
+//		Pub p = (Pub) model.getFlashAttributes().get("pub");
 		pub.addRandomVisitorToTheQueue();
-		System.out.println(pub);
+//		((Pub) model.getFlashAttributes().get("pub")).addRandomVisitorToTheQueue();
+		
+		System.out.println(model.getFlashAttributes());
+		System.out.println("------" + pub);
 		return "pub";
 	}
 	
