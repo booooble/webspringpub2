@@ -41,7 +41,7 @@
     						circle.path.setAttribute('stroke', state.color);
   						}
 					});
-					bar.animate(0.5);  // Number from 0.0 to 1.0
+					bar.animate(${pub.relativeCapacity});  // Number from 0.0 to 1.0
 				</script>
 			</div>		
 			<div id="center">

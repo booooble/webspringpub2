@@ -8,7 +8,7 @@ import java.io.IOException;
 import java.util.*;
 
 public class Pub {
-    private int maxCapacity = 150;
+    private int maxCapacity = 15;
     private String pubName;
     private int currCapacity = 0;
     private double beerLiterLimit = 0;
@@ -18,10 +18,26 @@ public class Pub {
     private int visitorsQueueSize = 0;
     private double drunkBeer = 0;
     private String stringBeerLiterLimit;
-
+    private double relativeCapacity = 0;
 
     
-    public int getMaxCapacity() {
+
+    
+    public double getRelativeCapacity() {
+		return relativeCapacity;
+	}
+
+	public void setRelativeCapacity(double relativeCapacity) {
+		this.relativeCapacity = relativeCapacity;
+	}
+
+	public void updateRelativeCapacity() {
+		System.out.println(this.currCapacity);
+		System.out.println(this.maxCapacity);
+		this.relativeCapacity = (double) this.currCapacity/this.maxCapacity;
+	}
+	
+	public int getMaxCapacity() {
         return maxCapacity;
     }
     
@@ -63,6 +79,9 @@ public class Pub {
     public void addRandomVisitorToTheQueue() throws IOException {
         visitorsQueue.add(RandomGenerator.personRandomGenerator());
         visitorsQueueSize++;
+        this.userFilter();
+        this.updateRelativeCapacity();
+        System.out.println("RelativeCapacity" + this.relativeCapacity);
 
         
         System.out.println(visitorsQueue);
@@ -88,10 +107,12 @@ public class Pub {
                 }
                 if (visitor.age >= 18 && this.currCapacity <= maxCapacity &&
                         this.beerLiterLimit - visitor.getLitersToDrink() >= 0) {
-                    System.out.println(visitor.getName() + " came in");
-                    temp.add(visitor);
+                	visitors.add(visitor);
+                	System.out.println(visitor.getName() + " came in");
+                   // temp.add(visitor);
                     this.currCapacity++;
                     this.beerLiterLimit -= visitor.getLitersToDrink();
+                    this.drunkBeer += visitor.getLitersToDrink();
                     Beerman.beerManCount++;
                 } else {
                     System.out.print(visitor.getName() + " was rejected ");
