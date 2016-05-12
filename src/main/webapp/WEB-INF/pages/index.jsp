@@ -21,11 +21,8 @@
 	<div id="common">
 		<div id="start">
 			<form action="puby" method="get">
-  				<span class="button-wrap"><button type="submit" name="your_name" value="START" class="btn-link button button-circle button-primary">START</button></span>
+  				<span class="button-wrap"><input type="submit" name="start" value="START" class="button button-circle button-primary"></span>
 			</form>
-<!-- 			<form:form modelAttribute="pub">
-				<span class="button-wrap"><a href="puby" class="button button-circle button-primary" type="submit" value="Submit">START</a></span>
-			</form:form> -->
 		</div>
 	</div>
 </body>

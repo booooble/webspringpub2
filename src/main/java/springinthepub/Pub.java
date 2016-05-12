@@ -17,7 +17,6 @@ public class Pub {
     private List<Beerman> visitors = new ArrayList<>();
     private int visitorsQueueSize = 0;
     private double drunkBeer = 0;
-    private String stringBeerLiterLimit;
     private double relativeCapacity = 0;
 
     
@@ -149,7 +148,7 @@ public class Pub {
 		return "Pub [maxCapacity=" + maxCapacity + ", pubName=" + pubName + ", currCapacity=" + currCapacity
 				+ ", beerLiterLimit=" + beerLiterLimit + ", maxBeerLimit=" + maxBeerLimit + ", visitorsQueue="
 				+ visitorsQueue + ", visitors=" + visitors + ", visitorsQueueSize=" + visitorsQueueSize + ", drunkBeer="
-				+ drunkBeer + ", stringBeerLiterLimit=" + stringBeerLiterLimit + "]";
+				+ drunkBeer + "]";
 	}
 
 	public String getPubName() {
@@ -201,11 +200,4 @@ public class Pub {
 		this.drunkBeer = drunkBeer;
 	}
 
-	public String getStringBeerLiterLimit() {
-		return beerLiterLimit + "L";
-	}
-
-	public void setStringBeerLiterLimit(Double stringBeerLiterLimit) {
-		this.stringBeerLiterLimit = stringBeerLiterLimit.toString() + "L";
-	}
 }

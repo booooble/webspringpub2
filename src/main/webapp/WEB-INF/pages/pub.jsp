@@ -50,23 +50,38 @@
 			<div id="right" class="rightImg">
 				<div id="rbar">
 				<script>
-					$("#rbar").percentageLoader({
-    					width : 200, height : 200, progress : 0.5, value : '425L'});
+					var $topLoader = $("#rbar").percentageLoader({
+    					width : 200, height : 200, progress : 0, value : '0L'});
+
+				    var currL = ${pub.beerLiterLimit};
+				    var totalL = ${pub.maxBeerLimit};
+				    
+					$topLoader.setProgress(currL / totalL);
+					$topLoader.setValue(currL.toString() + 'L');
    				</script>
    				</div>
 			</div>
 		</div>
 		<div id="bottom">
-			<%-- <FORM NAME="form1" ACTION="${pageContext.request.contextPath}/pubservlet" METHOD="POST"> --%>
-			<div id="add"><input type="submit" name="add" value="Add Visitor" class="button button-3d-primary button-rounded"></div>
-			
-			<div id="save">
+					
+			<div id="add">
 				<form action="add" method="POST">
-  					<button type="submit" name="save" value="Save Log" class="btn-link button button-3d-highlight button-circle">Save Log</button>
+					<input type="submit" name="add" value="Add Visitor" class="button button-3d-primary button-rounded">
 				</form>
 			</div>
-			<div id="remove"><a href="#" class="button button-3d-caution button-rounded">Remove Visitor</a></div>		
-			<!-- </FORM> -->
+			
+			<div id="save">
+				<form action="save" method="POST">
+  					<input type="submit" name="save" value="Save Log" class="btn-link button button-3d-highlight button-circle">
+				</form>
+			</div>
+			
+			<div id="remove">
+				<form action="remove" method="POST">
+					<input type="submit" name="remove" value="Remove Visitor" class="button button-3d-caution button-rounded">		
+				</form>
+			</div>
+			
 		</div>
 	</div>
 
