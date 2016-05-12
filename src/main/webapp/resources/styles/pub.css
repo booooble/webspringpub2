@@ -161,6 +161,7 @@ body {
     border: none;
     margin: 0 auto;
     overflow: auto;
+    font-size: 1.2em;
 }
 
 #container {

@@ -41,7 +41,12 @@ public class BaseController {
 	@RequestMapping(value="add", method=RequestMethod.POST)
 	public String addVisitor(@ModelAttribute("pub") Pub pub, final BindingResult mapping1BindingResult, final RedirectAttributes model) throws IOException {
 		pub.addRandomVisitorToTheQueue();
-		System.out.println("------" + pub);
+		return "pub";
+	}
+	
+	@RequestMapping(value="remove", method=RequestMethod.POST)
+	public String removeVisitor(@ModelAttribute("pub") Pub pub, final BindingResult mapping1BindingResult, final RedirectAttributes model) throws IOException {
+		pub.removeVisitor();
 		return "pub";
 	}
 	

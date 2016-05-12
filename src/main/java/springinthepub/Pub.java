@@ -19,10 +19,7 @@ public class Pub {
     private double drunkBeer = 0;
     private double relativeCapacity = 0;
     private StringBuffer historyText = new StringBuffer();
-
-    
-
-    
+   
     public double getRelativeCapacity() {
 		return relativeCapacity;
 	}
@@ -32,9 +29,7 @@ public class Pub {
 	}
 
 	public void updateRelativeCapacity() {
-		System.out.println(this.currCapacity);
-		System.out.println(this.maxCapacity);
-		this.relativeCapacity = (double) this.currCapacity/this.maxCapacity;
+		this.relativeCapacity = (double) this.currCapacity / this.maxCapacity;
 	}
 	
 	public int getMaxCapacity() {
@@ -66,7 +61,6 @@ public class Pub {
         this.pubName = pubName;
         this.maxBeerLimit = maxBeerLimit;
         this.beerLiterLimit = maxBeerLimit;
-        System.out.println(this.pubName);
     }
     public StringBuffer getHistoryText() {
 		return historyText;
@@ -76,8 +70,7 @@ public class Pub {
 		this.historyText = historyText;
 	}
 
-	public Pub() {
-    
+	public Pub() {   
     }
 
     public List<Beerman> getVisitors() {
@@ -87,14 +80,9 @@ public class Pub {
     public void addRandomVisitorToTheQueue() throws IOException {
         visitorsQueue.add(RandomGenerator.personRandomGenerator());
         visitorsQueueSize++;
-        this.userFilter();
-        this.updateRelativeCapacity();
-        System.out.println("RelativeCapacity" + this.relativeCapacity);
-
-        this.historyText.append("Hello Yeah!\n");
-        System.out.println(visitorsQueue);
-        System.out.println(visitorsQueue.size());
-    }
+        userFilter();
+        updateRelativeCapacity();
+     }
 
     public int getVisitorsQueueSize() {
         return visitorsQueue.size();
@@ -103,16 +91,29 @@ public class Pub {
     public void saveHistoryToFile(){
     	
     }
+    
+    public void removeVisitor(){
+    	if(this.visitors.size() > 0){
+    		String removedVisitorName = visitors.get(0).getName();
+    		this.visitors.remove(0);
+    		this.currCapacity--;
+    		this.historyText.append(removedVisitorName + " has been removed.\n");
+    	}
+    	else{
+    		this.historyText.append("There is noone to be removed... Add someone!\n");
+    	}
+    }
 
     public void userFilter() {
         if (visitorsQueue.isEmpty()) {
-            System.out.println("The queue is empty. Waiting for visitors");
+        	this.historyText.append("The queue is empty. Waiting for visitors...\n");
             //interrupt the Thread to wait;
         } else {
-            Iterator<Beerman> it = visitorsQueue.iterator();
-            List<Beerman> temp = new ArrayList<>();
-            while (it.hasNext()) {
-                Beerman visitor = (Beerman) it.next();
+           // Iterator<Beerman> it = visitorsQueue.iterator();
+           // List<Beerman> temp = new ArrayList<>();
+            while (!visitorsQueue.isEmpty()) {
+                //Beerman visitor = (Beerman) it.next();
+                Beerman visitor = visitorsQueue.poll();
                 boolean isEnoughBeer = this.beerLiterLimit - visitor.getLitersToDrink() >= 0;
                 if (!isEnoughBeer) {
                     makeAnOrder();
@@ -120,36 +121,36 @@ public class Pub {
                 if (visitor.age >= 18 && this.currCapacity <= maxCapacity &&
                         this.beerLiterLimit - visitor.getLitersToDrink() >= 0) {
                 	visitors.add(visitor);
-                	System.out.println(visitor.getName() + " came in");
+                	this.historyText.append(visitor.getName() + " came in.\n");
                    // temp.add(visitor);
                     this.currCapacity++;
                     this.beerLiterLimit -= visitor.getLitersToDrink();
                     this.drunkBeer += visitor.getLitersToDrink();
                     Beerman.beerManCount++;
                 } else {
-                    System.out.print(visitor.getName() + " was rejected ");
+                	this.historyText.append(visitor.getName() + " was rejected ");
                     if (visitor.getAge() < 18) {
-                        System.out.println("(" + visitor.getAge() + "years old)");
+                    	this.historyText.append("(" + visitor.getAge() + " years old)\n");
                     } else {
-                        System.out.println("No beer - no fun, man...");
+                        this.historyText.append("No beer - no fun, man...\n");
                     }
                 }
             }
-            visitors.addAll(temp);
+            //visitors.addAll(temp);
         }
     }
 
     public boolean makeAnOrder() {
-        System.out.println("The beerlimit has been ended. Composing the order...");
+    	this.historyText.append("The beerlimit has been ended. Composing the order...\n");
         double order = this.maxBeerLimit - this.beerLiterLimit;
-        System.out.println("The order for " + order + " liters was sent to the provider...");
+        this.historyText.append("The order for " + order + " liters was sent to the provider...\n");
         boolean isOrderReceived = Provider.sendOrder(order);
         if (isOrderReceived) {
-            System.out.println("We ordered " + order + " liters successfully. The party is going on!");
+        	this.historyText.append("We ordered " + order + " liters successfully. The party is going on!\n");
             this.beerLiterLimit += order;
             return true;
         } else {
-            System.out.println("The order has been rejected. The party is over...");
+        	this.historyText.append("The order has been rejected. The party is over...\n");
             return false;
         }
     }

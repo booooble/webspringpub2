@@ -45,20 +45,24 @@
 				</script>
 			</div>		
 			<div id="center">
-			<textarea id="historyTextArea" readonly>${pub.historyText}</textarea>
+				<textarea id="historyTextArea" readonly>${pub.historyText}</textarea>
+				<script>
+					var textarea = document.getElementById('historyTextArea');
+					textarea.scrollTop = textarea.scrollHeight;
+				</script>
 			</div>
 			<div id="right" class="rightImg">
 				<div id="rbar">
-				<script>
-					var $topLoader = $("#rbar").percentageLoader({
-    					width : 200, height : 200, progress : 0, value : '0L'});
+					<script>
+						var $topLoader = $("#rbar").percentageLoader({
+    						width : 200, height : 200, progress : 0, value : '0L'});
 
-				    var currL = ${pub.beerLiterLimit};
-				    var totalL = ${pub.maxBeerLimit};
+				    	var currL = ${pub.beerLiterLimit};
+				    	var totalL = ${pub.maxBeerLimit};
 				    
-					$topLoader.setProgress(currL / totalL);
-					$topLoader.setValue(currL.toString() + 'L');
-   				</script>
+						$topLoader.setProgress(currL / totalL);
+						$topLoader.setValue(currL.toString() + 'L');
+   					</script>
    				</div>
 			</div>
 		</div>
