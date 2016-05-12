@@ -18,6 +18,7 @@ public class Pub {
     private int visitorsQueueSize = 0;
     private double drunkBeer = 0;
     private double relativeCapacity = 0;
+    private StringBuffer historyText = new StringBuffer();
 
     
 
@@ -67,7 +68,15 @@ public class Pub {
         this.beerLiterLimit = maxBeerLimit;
         System.out.println(this.pubName);
     }
-    public Pub() {
+    public StringBuffer getHistoryText() {
+		return historyText;
+	}
+
+	public void setHistoryText(StringBuffer historyText) {
+		this.historyText = historyText;
+	}
+
+	public Pub() {
     
     }
 
@@ -82,13 +91,17 @@ public class Pub {
         this.updateRelativeCapacity();
         System.out.println("RelativeCapacity" + this.relativeCapacity);
 
-        
+        this.historyText.append("Hello Yeah!\n");
         System.out.println(visitorsQueue);
         System.out.println(visitorsQueue.size());
     }
 
     public int getVisitorsQueueSize() {
         return visitorsQueue.size();
+    }
+    
+    public void saveHistoryToFile(){
+    	
     }
 
     public void userFilter() {

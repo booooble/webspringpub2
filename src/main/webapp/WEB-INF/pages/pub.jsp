@@ -45,7 +45,7 @@
 				</script>
 			</div>		
 			<div id="center">
-			<textarea id="historyTextArea"></textarea>
+			<textarea id="historyTextArea" readonly>${pub.historyText}</textarea>
 			</div>
 			<div id="right" class="rightImg">
 				<div id="rbar">
