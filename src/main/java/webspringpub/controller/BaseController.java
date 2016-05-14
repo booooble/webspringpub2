@@ -50,23 +50,15 @@ public class BaseController {
 		return "pub";
 	}
 	
+	@RequestMapping(value="save", method=RequestMethod.POST)
+	public String saveHistory(@ModelAttribute("pub") Pub pub, final BindingResult mapping1BindingResult, final RedirectAttributes model) throws IOException {
+		pub.saveHistoryToFile();
+		return "pub";
+	}
+	
 	@ModelAttribute("pub")
     public Pub getPub() {
         return new Pub("Blue Lagoone", 500.0);
 
     }
-//	   
-//	@RequestMapping(value = "pub", method = RequestMethod.GET)
-//	public String loadPub(Model m) {
-//		m.addAttribute("pub", new Pub("Blue Lagoone", 500.0));
-//		
-///*		m.addAttribute("pub.visitorsQueue", this.getVisitorsQueue.size());
-//*/	   return "pub";
-//	}
-
-//	@RequestMapping(value="/pub", method=RequestMethod.POST)
-//	public String addBar(@ModelAttribute Pub pub, Model m) {
-//
-//		return "pub";
-//	}
 }

@@ -1,8 +1,8 @@
 package springinthepub;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
+/*import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;*/
 
 import java.io.IOException;
 import java.util.*;
@@ -62,6 +62,7 @@ public class Pub {
         this.maxBeerLimit = maxBeerLimit;
         this.beerLiterLimit = maxBeerLimit;
     }
+    
     public StringBuffer getHistoryText() {
 		return historyText;
 	}
@@ -82,14 +83,15 @@ public class Pub {
         visitorsQueueSize++;
         userFilter();
         updateRelativeCapacity();
-     }
+    }
 
     public int getVisitorsQueueSize() {
         return visitorsQueue.size();
     }
     
     public void saveHistoryToFile(){
-    	
+    	//TODO: implement via Save As Dialogue window
+    	this.historyText.append("Sorry, this feature is not implemented yet... (Hint: CTRL-C/CTRL-V &#9786;&#9996;).\n");
     }
     
     public void removeVisitor(){
@@ -97,6 +99,7 @@ public class Pub {
     		String removedVisitorName = visitors.get(0).getName();
     		this.visitors.remove(0);
     		this.currCapacity--;
+    		updateRelativeCapacity();
     		this.historyText.append(removedVisitorName + " has been removed.\n");
     	}
     	else{
@@ -121,7 +124,7 @@ public class Pub {
                 if (visitor.age >= 18 && this.currCapacity <= maxCapacity &&
                         this.beerLiterLimit - visitor.getLitersToDrink() >= 0) {
                 	visitors.add(visitor);
-                	this.historyText.append(visitor.getName() + " came in.\n");
+                	this.historyText.append(visitor.getName() + " came in. And drunk " + visitor.litersToDrink + " liter(s).\n");
                    // temp.add(visitor);
                     this.currCapacity++;
                     this.beerLiterLimit -= visitor.getLitersToDrink();
@@ -130,9 +133,9 @@ public class Pub {
                 } else {
                 	this.historyText.append(visitor.getName() + " was rejected ");
                     if (visitor.getAge() < 18) {
-                    	this.historyText.append("(" + visitor.getAge() + " years old)\n");
+                    	this.historyText.append("(" + visitor.getAge() + " years old).\n");
                     } else {
-                        this.historyText.append("No beer - no fun, man...\n");
+                        this.historyText.append("(No beer - no fun, man...)\n");
                     }
                 }
             }
@@ -154,8 +157,6 @@ public class Pub {
             return false;
         }
     }
-
-
 
     @Override
 	public String toString() {
@@ -189,7 +190,7 @@ public class Pub {
         this.beerLiterLimit = beerLiterLimit;
     }
 
-    public static void main(String[] args) throws InterruptedException {
+/*    public static void main(String[] args) throws InterruptedException {
 
 //        Pub blueLagoon1 = new Pub("name", 500.0);
 //        blueLagoon1.setVisitors(new Beerman("Jim", 40, 20.0));
@@ -200,7 +201,7 @@ public class Pub {
         ApplicationContext ac = new ClassPathXmlApplicationContext("config.xml");
         Pub blueLagoon = (Pub) ac.getBean("pub");
         System.out.println(blueLagoon);
-    }
+    }*/
 
 	public void setVisitorsQueueSize(int visitorsQueueSize) {
 		this.visitorsQueueSize = visitorsQueueSize;

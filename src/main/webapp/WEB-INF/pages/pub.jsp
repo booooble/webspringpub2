@@ -76,7 +76,7 @@
 			
 			<div id="save">
 				<form action="save" method="POST">
-  					<input type="submit" name="save" value="Save Log" class="btn-link button button-3d-highlight button-circle">
+  					<input type="submit" name="save" value="Save History" class="btn-link button button-3d-highlight button-circle">
 				</form>
 			</div>
 			
@@ -89,7 +89,5 @@
 		</div>
 	</div>
 
-<h2>Message : ${message}</h2>
-<h2>Counter : ${counter}</h2>	
 </body>
 </html>
