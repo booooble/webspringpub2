@@ -1,29 +1,21 @@
 package springinthepub;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import springinthepub.process.AddToQueueProcess;
-import springinthepub.process.RemoveVisitorProcess;
-import springinthepub.process.VisitorsFilterProcess;
+
 /*import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;*/
 
 import java.io.IOException;
 import java.util.*;
-import java.util.concurrent.ConcurrentLinkedQueue;
-import java.util.concurrent.CopyOnWriteArrayList;
-import java.util.concurrent.LinkedBlockingQueue;
-import java.util.concurrent.SynchronousQueue;
-import java.util.concurrent.atomic.AtomicInteger;
-import java.util.concurrent.atomic.DoubleAdder;
 
 public class Pub {
     protected int maxCapacity = 15;
     private String pubName;
-    public AtomicInteger currCapacity = new AtomicInteger(0);
-    protected DoubleAdder beerLiterLimit = new DoubleAdder();
+    public int currCapacity = 0;
+    protected double beerLiterLimit;
     private volatile double maxBeerLimit;
-    public Queue<Beerman> visitorsQueue = new LinkedBlockingQueue<Beerman>();
-    public List<Beerman> visitors = new CopyOnWriteArrayList<>();
+    public Queue<Beerman> visitorsQueue = new LinkedList<Beerman>();
+    public List<Beerman> visitors = new ArrayList<>();
     public int visitorsQueueSize = 0;
     protected volatile double drunkBeer = 0;
     private volatile double relativeCapacity = 0;
@@ -38,7 +30,7 @@ public class Pub {
 	}
 
 	public void updateRelativeCapacity() {
-		this.relativeCapacity = (double) this.currCapacity.get() / this.maxCapacity;
+		this.relativeCapacity = (double) this.currCapacity / this.maxCapacity;
 	}
 	
 	public int getMaxCapacity() {
@@ -70,18 +62,18 @@ public class Pub {
     }
 
     public void decreaseCurrCapacity(){
-        currCapacity.set(this.currCapacity.get() - 1);
+        currCapacity--;
     }
 
     public void increaseCurrCapacity(){
-        currCapacity.set(this.currCapacity.get() + 1);
+        currCapacity++;
     }
 
     @Autowired
     public Pub(String pubName, double maxBeerLimit) {
         this.pubName = pubName;
         this.maxBeerLimit = maxBeerLimit;
-        this.beerLiterLimit.add(maxBeerLimit);
+        this.beerLiterLimit = maxBeerLimit;
     }
     
     public StringBuffer getHistoryText() {
@@ -99,114 +91,6 @@ public class Pub {
         return visitors;
     }
 
-//    public void addRandomVisitorToTheQueue() throws IOException {
-//        visitorsQueue.add(RandomGenerator.personRandomGenerator());
-//        visitorsQueueSize++;
-//        userFilter();
-//        updateRelativeCapacity();
-//    }
-    public void addRandomVisitorToTheQueue(){
-        System.out.println("addThread started");
-        Thread toQueueThread = new Thread(new AddToQueueProcess(this));
-        toQueueThread.setPriority(Thread.MAX_PRIORITY);
-        toQueueThread.start();
-        Thread filterThread = new Thread(new VisitorsFilterProcess(this));
-        filterThread.setPriority(Thread.MIN_PRIORITY);
-        filterThread.start();
-    }
-
-    public void removeVisitor(){
-        Thread removeThread = new Thread(new RemoveVisitorProcess(this));
-        removeThread.setPriority(Thread.NORM_PRIORITY);
-        removeThread.start();
-
-    }
-
-//    public void userFilter(){
-//        Thread t = new Thread(new VisitorsFilterProcess(this));
-//        t.setPriority(Thread.MIN_PRIORITY);
-//        t.start();
-//    }
-
-//    public void addVisitorToTheQueueProcess(){
-//        AddToQueueThread t = new AddToQueueThread();
-//        t.setPriority(Thread.MAX_PRIORITY);
-//        t.start();
-//    }
-//
-//    public void removeVisitorProcess(){
-//        RemoveVisitorThread t = new RemoveVisitorThread();
-//        t.setPriority(Thread.MAX_PRIORITY);
-//        t.start();
-//    }
-//
-//    public void visitorFilterProcess(){
-//        VisitorFilterThread t = new VisitorFilterThread();
-//        t.setPriority(Thread.MIN_PRIORITY);
-//        t.start();
-//    }
-
-//    class RemoveVisitorThread extends Thread
-//    {
-//        public void run(){
-//            if(visitors.size() > 0){
-//                String removedVisitorName = visitors.get(0).getName();
-//                visitors.remove(0);
-//                currCapacity--;
-//                updateRelativeCapacity();
-//                historyText.append(removedVisitorName + " has been removed.\n");
-//            }
-//            else{
-//                historyText.append("There is noone to be removed... Add someone!\n");
-//            }
-//        }
-//    }
-//
-//    class AddToQueueThread extends Thread
-//    {
-//        public void run(){
-//            try {
-//                visitorsQueue.add(RandomGenerator.personRandomGenerator());
-//                visitorsQueueSize++;
-//            } catch (IOException e) {
-//                e.printStackTrace();
-//            }
-//            if(visitorsQueue.size() > 0){
-//            	visitorFilterProcess();
-//            }
-//        }
-//    }
-//
-//    class VisitorFilterThread extends Thread
-//    {
-//        public void run(){
-//                while (!visitorsQueue.isEmpty()) {
-//                    Beerman visitor = visitorsQueue.poll();
-//                    boolean isEnoughBeer = beerLiterLimit - visitor.getLitersToDrink() >= 0;
-//                    if (!isEnoughBeer) {
-//                        makeAnOrder();
-//                    }
-//                    if (visitor.age >= 18 && currCapacity <= maxCapacity &&
-//                            beerLiterLimit - visitor.getLitersToDrink() >= 0) {
-//                        visitors.add(visitor);
-//                        historyText.append(visitor.getName() + " came in. And drunk " + visitor.litersToDrink + " liter(s).\n");
-//                        currCapacity++;
-//                        beerLiterLimit -= visitor.getLitersToDrink();
-//                        drunkBeer += visitor.getLitersToDrink();
-//                        Beerman.beerManCount++;
-//                        updateRelativeCapacity();
-//                    } else {
-//                        historyText.append(visitor.getName() + " was rejected ");
-//                        if (visitor.getAge() < 18) {
-//                            historyText.append("(" + visitor.getAge() + " years old).\n");
-//                        } else {
-//                            historyText.append("(No beer - no fun, man...)\n");
-//                        }
-//                    }
-//                }
-//        }
-//    }
-
     public int getVisitorsQueueSize() {
         return visitorsQueue.size();
     }
@@ -215,70 +99,72 @@ public class Pub {
     	//TODO: implement via Save As Dialogue window
     	this.historyText.append("Sorry, this feature is not implemented yet... (Hint: CTRL-C/CTRL-V &#9786;&#9996;).\n");
     }
+
+    public void addRandomVisitorToTheQueue() throws IOException {
+        this.visitorsQueue.add(RandomGenerator.personRandomGenerator());
+        increaseQueueSize();
+    }
     
-//    public void removeVisitor(){
-//    	if(this.visitors.size() > 0){
-//    		String removedVisitorName = visitors.get(0).getName();
-//    		this.visitors.remove(0);
-//    		this.currCapacity--;
-//    		updateRelativeCapacity();
-//    		this.historyText.append(removedVisitorName + " has been removed.\n");
-//    	}
-//    	else{
-//    		this.historyText.append("There is noone to be removed... Add someone!\n");
-//    	}
-//    }
+    public void removeVisitor(){
+    	if(this.visitors.size() > 0){
+    		String removedVisitorName = visitors.get(0).getName();
+    		this.visitors.remove(0);
+    		this.currCapacity--;
+    		updateRelativeCapacity();
+    		this.historyText.append(removedVisitorName + " has been removed.\n");
+    	}
+    	else{
+    		this.historyText.append("There is noone to be removed... Add someone!\n");
+    	}
+    }
 
-
-
-//
-//    public void userFilter() {
-//        if (visitorsQueue.isEmpty()) {
-//        	this.historyText.append("The queue is empty. Waiting for visitors...\n");
-//            //interrupt the Thread to wait;
-//        } else {
-//           // Iterator<Beerman> it = visitorsQueue.iterator();
-//           // List<Beerman> temp = new ArrayList<>();
-//            while (!visitorsQueue.isEmpty()) {
-//                //Beerman visitor = (Beerman) it.next();
-//                Beerman visitor = visitorsQueue.poll();
-//                boolean isEnoughBeer = this.beerLiterLimit - visitor.getLitersToDrink() >= 0;
-//                if (!isEnoughBeer) {
-//                    makeAnOrder();
-//                }
-//                if (visitor.age >= 18 && this.currCapacity <= maxCapacity &&
-//                        this.beerLiterLimit - visitor.getLitersToDrink() >= 0) {
-//                	visitors.add(visitor);
-//                	this.historyText.append(visitor.getName() + " came in. And drunk " + visitor.litersToDrink + " liter(s).\n");
-//                   // temp.add(visitor);
-//                    this.currCapacity++;
-//                    this.beerLiterLimit -= visitor.getLitersToDrink();
-//                    this.drunkBeer += visitor.getLitersToDrink();
-//                    Beerman.beerManCount++;
-//                } else {
-//                	this.historyText.append(visitor.getName() + " was rejected ");
-//                    if (visitor.getAge() < 18) {
-//                    	this.historyText.append("(" + visitor.getAge() + " years old).\n");
-//                    } else {
-//                        this.historyText.append("(No beer - no fun, man...)\n");
-//                    }
-//                }
-//            }
-//            //visitors.addAll(temp);
-//        }
-//    }
+    public void userFilter() {
+        if (visitorsQueue.isEmpty()) {
+        	this.historyText.append("The queue is empty. Waiting for visitors...\n");
+            //interrupt the Thread to wait;
+        } else {
+           // Iterator<Beerman> it = visitorsQueue.iterator();
+           // List<Beerman> temp = new ArrayList<>();
+            while (!visitorsQueue.isEmpty()) {
+                //Beerman visitor = (Beerman) it.next();
+                Beerman visitor = visitorsQueue.poll();
+                boolean isEnoughBeer = this.beerLiterLimit - visitor.getLitersToDrink() >= 0;
+                if (!isEnoughBeer) {
+                    makeAnOrder();
+                }
+                if (visitor.age >= 18 && this.currCapacity <= maxCapacity &&
+                        this.beerLiterLimit - visitor.getLitersToDrink() >= 0) {
+                	visitors.add(visitor);
+                	this.historyText.append(visitor.getName() + " came in. And drunk " + visitor.litersToDrink + " liter(s).\n");
+                   // temp.add(visitor);
+                    this.currCapacity++;
+                    this.beerLiterLimit -= visitor.getLitersToDrink();
+                    this.drunkBeer += visitor.getLitersToDrink();
+                    Beerman.beerManCount++;
+                } else {
+                	this.historyText.append(visitor.getName() + " was rejected ");
+                    if (visitor.getAge() < 18) {
+                    	this.historyText.append("(" + visitor.getAge() + " years old).\n");
+                    } else {
+                        this.historyText.append("(No beer - no fun, man...)\n");
+                    }
+                }
+            }
+            //visitors.addAll(temp);
+        }
+    }
 
     public void increaseBeerLimit(double order){
-    	this.beerLiterLimit.add(order);
+    	this.beerLiterLimit += order;
     }
     
     public void decreaseBeerLimit(double minus){
-    	this.beerLiterLimit.add(-minus);
+    	this.beerLiterLimit -= minus;
     }
     
     public boolean makeAnOrder() {
     	this.historyText.append("The beerlimit has been ended. Composing the order...\n");
-        double order = this.maxBeerLimit - this.beerLiterLimit.doubleValue();
+        double order = this.maxBeerLimit - this.beerLiterLimit;
         this.historyText.append("The order for " + order + " liters was sent to the provider...\n");
         boolean isOrderReceived = Provider.sendOrder(order);
         if (isOrderReceived) {
@@ -307,19 +193,19 @@ public class Pub {
         this.pubName = pubName;
     }
 
-    public AtomicInteger getCurrCapacity() {
+    public int getCurrCapacity() {
         return currCapacity;
     }
 
-    public void setCurrCapacity(AtomicInteger currCapacity) {
+    public void setCurrCapacity(int currCapacity) {
         this.currCapacity = currCapacity;
     }
 
-    public DoubleAdder getBeerLiterLimit() {
+    public double getBeerLiterLimit() {
         return beerLiterLimit;
     }
 
-    public void setBeerLiterLimit(DoubleAdder beerLiterLimit) {
+    public void setBeerLiterLimit(double beerLiterLimit) {
         this.beerLiterLimit = beerLiterLimit;
     }
 
