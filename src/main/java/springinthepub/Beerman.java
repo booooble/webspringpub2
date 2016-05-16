@@ -4,9 +4,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 public class Beerman {
     String name;
-    int age;
-    double litersToDrink;
-    static int beerManCount = 0;
+    public int age;
+    public double litersToDrink;
+    public static int beerManCount = 0;
 
 
     @Autowired

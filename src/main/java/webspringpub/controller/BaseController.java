@@ -24,7 +24,6 @@ public class BaseController {
 		model.addFlashAttribute("pub", pub);
 		model.addFlashAttribute("message","Added successfully.");
 		System.out.println(model.getFlashAttributes());*/
-		
 		return "pub";
 	}
 	
