@@ -95,10 +95,10 @@ public class Pub {
         return visitorsQueue.size();
     }
     
-    public void saveHistoryToFile(){
-    	//TODO: implement via Save As Dialogue window
-    	this.historyText.append("Sorry, this feature is not implemented yet... (Hint: CTRL-C/CTRL-V &#9786;&#9996;).\n");
-    }
+//    public void saveHistoryToFile(){
+//    	//TODO: implement via Save As Dialogue window
+//    	this.historyText.append("Sorry, this feature is not implemented yet... (Hint: CTRL-C/CTRL-V &#9786;&#9996;).\n");
+//    }
 
     public void addRandomVisitorToTheQueue() throws IOException {
         this.visitorsQueue.add(RandomGenerator.personRandomGenerator());
@@ -123,10 +123,8 @@ public class Pub {
         	this.historyText.append("The queue is empty. Waiting for visitors...\n");
             //interrupt the Thread to wait;
         } else {
-           // Iterator<Beerman> it = visitorsQueue.iterator();
-           // List<Beerman> temp = new ArrayList<>();
+
             while (!visitorsQueue.isEmpty()) {
-                //Beerman visitor = (Beerman) it.next();
                 Beerman visitor = visitorsQueue.poll();
                 boolean isEnoughBeer = this.beerLiterLimit - visitor.getLitersToDrink() >= 0;
                 if (!isEnoughBeer) {
@@ -136,10 +134,10 @@ public class Pub {
                         this.beerLiterLimit - visitor.getLitersToDrink() >= 0) {
                 	visitors.add(visitor);
                 	this.historyText.append(visitor.getName() + " came in. And drunk " + visitor.litersToDrink + " liter(s).\n");
-                   // temp.add(visitor);
                     this.currCapacity++;
                     this.beerLiterLimit -= visitor.getLitersToDrink();
                     this.drunkBeer += visitor.getLitersToDrink();
+                    this.updateRelativeCapacity();
                     Beerman.beerManCount++;
                 } else {
                 	this.historyText.append(visitor.getName() + " was rejected ");
@@ -150,7 +148,6 @@ public class Pub {
                     }
                 }
             }
-            //visitors.addAll(temp);
         }
     }
 
