@@ -14,7 +14,7 @@ public class Pub {
     public int currCapacity = 0;
     protected double beerLiterLimit;
     private volatile double maxBeerLimit;
-    public Queue<Beerman> visitorsQueue = new LinkedList<Beerman>();
+    public Deque<Beerman> visitorsQueue = new LinkedList<Beerman>();
     public List<Beerman> visitors = new ArrayList<>();
     public int visitorsQueueSize = 0;
     protected volatile double drunkBeer = 0;
@@ -49,7 +49,7 @@ public class Pub {
         return visitorsQueue;
     }
 
-    public void setVisitorsQueue(Queue<Beerman> queue) {
+    public void setVisitorsQueue(Deque<Beerman> queue) {
         this.visitorsQueue = queue;
     }
 
@@ -94,14 +94,9 @@ public class Pub {
     public int getVisitorsQueueSize() {
         return visitorsQueue.size();
     }
-    
-//    public void saveHistoryToFile(){
-//    	//TODO: implement via Save As Dialogue window
-//    	this.historyText.append("Sorry, this feature is not implemented yet... (Hint: CTRL-C/CTRL-V &#9786;&#9996;).\n");
-//    }
 
     public void addRandomVisitorToTheQueue() throws IOException {
-        this.visitorsQueue.add(RandomGenerator.personRandomGenerator());
+        this.visitorsQueue.addLast(RandomGenerator.personRandomGenerator());
         increaseQueueSize();
     }
     
@@ -120,18 +115,20 @@ public class Pub {
 
     public void userFilter() {
         if (visitorsQueue.isEmpty()) {
-        	this.historyText.append("The queue is empty. Waiting for visitors...\n");
-            //interrupt the Thread to wait;
-        } else {
+        	this.historyText.append("The queue is empty. Waiting for visitors...\n");      	
+        }
+        else if (currCapacity == maxCapacity){
+    		this.historyText.append("The Bar is full!!! Ask someoone to leave! The visitor is still in the queue!\n");
+    	}
 
+        else {
             while (!visitorsQueue.isEmpty()) {
-                Beerman visitor = visitorsQueue.poll();
-                boolean isEnoughBeer = this.beerLiterLimit - visitor.getLitersToDrink() >= 0;
+                boolean isEnoughBeer = this.beerLiterLimit - visitorsQueue.getFirst().getLitersToDrink() >= 0;
                 if (!isEnoughBeer) {
                     makeAnOrder();
                 }
-                if (visitor.age >= 18 && this.currCapacity <= maxCapacity &&
-                        this.beerLiterLimit - visitor.getLitersToDrink() >= 0) {
+                Beerman visitor = visitorsQueue.pollFirst();
+                if (visitor.age >= 18 && this.currCapacity < maxCapacity) {
                 	visitors.add(visitor);
                 	this.historyText.append(visitor.getName() + " came in. And drunk " + visitor.litersToDrink + " liter(s).\n");
                     this.currCapacity++;
@@ -139,13 +136,23 @@ public class Pub {
                     this.drunkBeer += visitor.getLitersToDrink();
                     this.updateRelativeCapacity();
                     Beerman.beerManCount++;
-                } else {
-                	this.historyText.append(visitor.getName() + " was rejected ");
-                    if (visitor.getAge() < 18) {
-                    	this.historyText.append("(" + visitor.getAge() + " years old).\n");
-                    } else {
-                        this.historyText.append("(No beer - no fun, man...)\n");
-                    }
+                }                 
+                else {
+                	if(currCapacity == maxCapacity){
+                		visitorsQueue.addFirst(visitor);
+                		this.historyText.append(visitor.getName() + " is not able to come in because the bar is full). "
+                				+ "This visitor is still waiting in the queue...\n");         		
+                		break;
+                	}
+                	else {this.historyText.append(visitor.getName() + " was rejected ");           
+                		if (visitor.getAge() < 18) {
+                			this.historyText.append("(" + visitor.getAge() + " years old).\n");
+                    	}
+
+                		else {
+                			this.historyText.append("(The reason is unknown).\n");
+                		}
+                	}
                 }
             }
         }
