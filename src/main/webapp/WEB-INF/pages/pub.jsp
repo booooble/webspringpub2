@@ -8,6 +8,7 @@
 	<title>Web Spring Pub</title>
 	<link href="${pageContext.request.contextPath}/resources/styles/pub.css" rel="stylesheet">
 	<link rel="stylesheet" href="resources/styles/buttons.css">
+	<link rel="stylesheet" href="resources/styles/font-awesome.min.css">
 	<script src="//code.jquery.com/jquery-2.1.4.min.js"></script>
 	<script src="resources/js/ProgressBar.js"></script>
 	<script src="resources/js/jquery.percentageloader-0.1.min.js"></script>
@@ -22,6 +23,13 @@
 		<div id="infoBar">
 			<div id="visitorsInfo">${pub.currCapacity}/${pub.maxCapacity}</div>
 			<div id="queueInfo">${pub.visitorsQueueSize}</div>
+			<div id="processQueue">
+					<form action="processQueue" method="POST">
+  						<!-- <input type="submit" name="processQueue" value="Process" class="button button-rounded button-flat-primary"><i class="fa fa-refresh">
+  						<i class="fa fa-refresh"></i> -->
+						<a href="#" class="button button-rounded button-flat-primary">bla-bla</a>
+					</form>
+			</div>
 			<div id="beerInfo">${pub.drunkBeer}</div>
 		</div>
 			<div id="content">
