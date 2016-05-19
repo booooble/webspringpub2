@@ -23,9 +23,10 @@
 		<div id="infoBar">
 			<div id="visitorsInfo">${pub.currCapacity}/${pub.maxCapacity}</div>
 			<div id="queueInfo">${pub.visitorsQueueSize}</div>
-			<div id="processQueue portraits" class="buttons">
+			<div id="processQueue" >
 					<form action="add" method="POST">
- 						<input type="submit" name="add" value="Add Visitor" class="btn green">
+ 						<!-- <a href="#" class="button button-rounded button-flat-primary"><i class="fa fa-refresh"></i>Process</a> -->
+ 						<button type="submit" name="add" value="Add Visitor" class="button button-rounded button-flat-primary "><i class="fa fa-refresh"></i></button> 
 					</form>
 			</div>
 			<div id="beerInfo">${pub.drunkBeer}</div>
