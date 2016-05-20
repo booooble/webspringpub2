@@ -58,6 +58,12 @@ public class BaseController {
 		return "pub";
 	}
 	
+	@RequestMapping(value="processQueue", method=RequestMethod.POST)
+	public String processQueue(@ModelAttribute("pub") Pub pub, final BindingResult mapping1BindingResult, final RedirectAttributes model) throws IOException {
+		pub.userFilter();
+		return "pub";
+	}
+	
 	@RequestMapping(value="remove", method=RequestMethod.POST)
 	public String removeVisitor(@ModelAttribute("pub") Pub pub, final BindingResult mapping1BindingResult, final RedirectAttributes model) throws IOException {
 		pub.removeVisitor();
