@@ -63,7 +63,7 @@ body {
 
 #queueInfo {
 	position:absolute;
-	width:calc(50% - 200px);
+	width:calc(50% - 185px);
 	height:60px;
 	left:200px;
 	text-align: right;
@@ -80,7 +80,7 @@ body {
 	box-sizing: border-box;
     padding-left: 20px;
 	padding-bottom: 50px;
-	width:calc(50% - 200px);
+	width:calc(50% - 215px);
 	height:60px;
 	position:absolute;
 	right:200px;

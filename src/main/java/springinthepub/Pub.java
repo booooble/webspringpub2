@@ -13,12 +13,12 @@ public class Pub {
     private String pubName;
     public int currCapacity = 0;
     protected double beerLiterLimit;
-    private volatile double maxBeerLimit;
+    private double maxBeerLimit;
     public Deque<Beerman> visitorsQueue = new LinkedList<Beerman>();
     public List<Beerman> visitors = new ArrayList<>();
     public int visitorsQueueSize = 0;
-    protected volatile double drunkBeer = 0;
-    private volatile double relativeCapacity = 0;
+    protected double drunkBeer = 0;
+    private double relativeCapacity = 0;
     public StringBuffer historyText = new StringBuffer();
 
     public double getRelativeCapacity() {
