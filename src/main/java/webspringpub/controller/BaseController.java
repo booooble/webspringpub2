@@ -53,8 +53,14 @@ public class BaseController {
 	
 	@RequestMapping(value="add", method=RequestMethod.POST)
 	public String addVisitor(@ModelAttribute("pub") Pub pub, final BindingResult mapping1BindingResult, final RedirectAttributes model) throws IOException {
+		pub.addRandomVisitor();
+//		pub.userFilter();
+		return "pub";
+	}
+	
+	@RequestMapping(value="add2queue", method=RequestMethod.POST)
+	public String addToQueue(@ModelAttribute("pub") Pub pub, final BindingResult mapping1BindingResult, final RedirectAttributes model) throws IOException {
 		pub.addRandomVisitorToTheQueue();
-		pub.userFilter();
 		return "pub";
 	}
 	

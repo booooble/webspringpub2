@@ -22,11 +22,17 @@
 		</div>
 		<div id="infoBar">
 			<div id="visitorsInfo">${pub.currCapacity}/${pub.maxCapacity}</div>
+			<div id="incrQueue" >
+					<form action="add2queue" method="POST">
+ 						<!-- <a href="#" class="button button-rounded button-flat-primary"><i class="fa fa-user-plus"></i>Process</a> -->
+ 						<button type="submit" name="incQueue" value="Add Visitor" class="button button-rounded button-flat-primary" style="height:50px; width:50px; margin-top: 12px; padding: 0px; line-height: 0px; background: rgba(12, 222, 0, 0.51); vertical-align: top;" ><i class="fa fa-plus-circle fa-3x" ></i></button> 
+					</form>
+			</div>
 			<div id="queueInfo">${pub.visitorsQueueSize}</div>
 			<div id="processQueue" >
 					<form action="processQueue" method="POST">
  						<!-- <a href="#" class="button button-rounded button-flat-primary"><i class="fa fa-refresh"></i>Process</a> -->
- 						<button type="submit" name="add" value="Add Visitor" class="button button-rounded button-flat-primary" style="height:50px; width:50px; margin-top: 12px; padding: 0px; line-height: 0px; background: rgba(12, 222, 0, 0.51); vertical-align: top;" ><i class="fa fa-refresh fa-3x" ></i></button> 
+ 						<button type="submit" name="procQueue" class="button button-rounded button-flat-primary" style="height:50px; width:50px; margin-top: 12px; padding: 0px; line-height: 0px; background: rgba(12, 222, 0, 0.51); vertical-align: top;" ><i class="fa fa-refresh fa-3x" ></i></button> 
 					</form>
 			</div>
 			<div id="beerInfo">${pub.drunkBeer}</div>

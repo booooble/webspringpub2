@@ -96,8 +96,41 @@ public class Pub {
     }
 
     public void addRandomVisitorToTheQueue() throws IOException {
-        this.visitorsQueue.addLast(RandomGenerator.personRandomGenerator());
+    	Beerman vis = RandomGenerator.personRandomGenerator();
+        this.visitorsQueue.addLast(vis);
         increaseQueueSize();
+        this.historyText.append(vis.getName() + " has came and is waiting at the end of the queue.\n");
+    }
+    
+    public void addRandomVisitor() throws IOException {
+    	
+    	if (currCapacity == maxCapacity){
+    		this.historyText.append("The Bar is full!!! Ask someoone to leave! The visitor is still in the queue!\n");
+    	}
+    	else{    		
+    		Beerman vis = RandomGenerator.personRandomGenerator();
+    		boolean isEnoughBeer = this.beerLiterLimit - vis.getLitersToDrink() >= 0;    		
+    		if(vis.age > 18){
+    			if(!isEnoughBeer){
+        			makeAnOrder();
+        		}
+    			this.visitors.add(vis);
+    			this.historyText.append(vis.getName() + " came in. And drunk " + vis.litersToDrink + " liter(s).\n");
+                this.currCapacity++;
+                this.beerLiterLimit -= vis.getLitersToDrink();
+                this.drunkBeer += vis.getLitersToDrink();
+                this.updateRelativeCapacity();
+                Beerman.beerManCount++;
+    		}
+    		else{this.historyText.append(vis.getName() + " was rejected ");           
+    			if (vis.getAge() < 18) {
+    				this.historyText.append("(" + vis.getAge() + " years old).\n");
+        	
+    			}
+    		}
+    	}
+
+    	
     }
     
     public void removeVisitor(){
